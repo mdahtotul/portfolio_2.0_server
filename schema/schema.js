@@ -53,7 +53,6 @@ const RootQueryType = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return Client.findById(args.id);
-        // return clients.find((client) => client.id === args.id);
       },
     },
     listProjects: {
@@ -67,7 +66,6 @@ const RootQueryType = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return Project.findById(args.id);
-        // return projects.find((project) => project.id === args.id);
       },
     },
   },
@@ -103,7 +101,7 @@ const RootMutationType = new GraphQLObjectType({
         phone: { type: GraphQLString },
       },
       resolve(parent, args) {
-        let updateClientInfo = new Client({
+        const updateClientInfo = new Client({
           _id: args.id,
           name: args.name,
           email: args.email,
@@ -173,14 +171,14 @@ const RootMutationType = new GraphQLObjectType({
         clientId: { type: GraphQLID },
       },
       resolve(parent, args) {
-        const updateInfo = new Project({
+        const updateProjectInfo = new Project({
           _id: args.id,
           name: args.name,
           description: args.description,
           status: args.status,
           clientId: args.clientId,
         });
-        return Project.findOneAndUpdate({ _id: args.id }, updateInfo, {
+        return Project.findOneAndUpdate({ _id: args.id }, updateProjectInfo, {
           new: true,
         });
       },
