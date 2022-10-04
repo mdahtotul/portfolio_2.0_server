@@ -1,25 +1,26 @@
 // external imports
 const express = require("express");
 require("dotenv").config();
-const { graphqlHTTP } = require("express-graphql");
-const graphQLSchema = require("./schema/schema");
+const cors = require("cors");
 const colors = require("colors");
+const { ApolloServer } = require("apollo-server");
 const connectDB = require("./config/mongodb");
+const { typeDefs } = require("./schema/type-defs");
+const { resolvers } = require("./schema/resolvers");
 
 // init app
 const app = express();
 const port = process.env.PORT || 5000;
+app.use(cors());
 
 // database connection
 connectDB();
 
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema: graphQLSchema,
-    graphiql: process.env.NODE_ENV === "development",
-  })
-);
+const graphQLServer = new ApolloServer({ typeDefs, resolvers });
+
+graphQLServer.listen().then(({ url }) => {
+  console.log(`GraphQL endpoint is running at ${url}`.bgGreen.bold);
+});
 
 app.get("/", (req, res) => {
   res

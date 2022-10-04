@@ -11,7 +11,7 @@ const connectDB = async () => {
         .underline.bold
     );
   } catch (err) {
-    console.log(`Mongoose Connection Failed: ${err.message}`.red.bold);
+    console.log(`Mongoose Connection Failed: ${err.message}`.bgRed.bold);
   }
 };
 
