@@ -1,36 +1,28 @@
 const People = require("../models/People");
+const Project = require("../models/project");
 const { userList, movieList } = require("../sampleData");
 
 const resolvers = {
   Query: {
+    // HACK: user query resolvers done
     listUsers: async () => {
       return await People.find({});
     },
     getUser: async (parent, args) => {
       return await People.findById(args.id);
     },
-    listMovies: async () => {
-      return movieList;
+    // HACK: project query resolvers done
+    listProjects: async () => {
+      return await Project.find({});
     },
-    getMovie: async (parent, args) => {
-      const movie = await movieList.find((x) => x.id === args.id);
-      return movie;
-    },
-    getMoviesByName: async (parent, args) => {
-      const movies = await movieList.filter((x) =>
-        x.name.toLowerCase().includes(args.name.toLowerCase())
-      );
-      return movies;
-    },
-  },
-  User: {
-    favoriteMovies: async (parent) => {
-      return movieList.filter((x) => x.year >= 2000 && x.year <= 2020);
+    getProject: async (parent, args) => {
+      return await Project.findById(args.id);
     },
   },
 
   // graphQL mutation
   Mutation: {
+    // HACK: user mutation resolve done
     createUser: async (parent, args) => {
       const newUser = new People({
         name: args.input.name,
@@ -67,6 +59,49 @@ const resolvers = {
     },
     deleteUser: async (parent, args) => {
       return await People.findByIdAndDelete(args.id);
+    },
+    // HACK: project mutation resolve done
+    createProject: async (parent, args) => {
+      const newProject = new Project({
+        name: args.input.name,
+        categories: args.input.categories,
+        des: args.input.des || null,
+        tags: args.input.tags || null,
+        status: args.input.status,
+        clientId: args.input.clientId,
+        live_site: args.input.live_site || "",
+        client_repo: args.input.client_repo || "",
+        server_repo: args.input.server_repo || "",
+        thumb_img: args.input.thumb_img || "",
+        sub_img: args.input.sub_img || null,
+      });
+      return await newProject.save();
+    },
+    updateProject: async (parent, args) => {
+      const updateProjectInfo = new Project({
+        _id: args.id,
+        name: args.input.name,
+        categories: args.input.categories,
+        des: args.input.des || null,
+        tags: args.input.tags || null,
+        status: args.input.status,
+        clientId: args.input.clientId,
+        live_site: args.input.live_site || "",
+        client_repo: args.input.client_repo || "",
+        server_repo: args.input.server_repo || "",
+        thumb_img: args.input.thumb_img || "",
+        sub_img: args.input.sub_img || null,
+      });
+      return await Project.findOneAndUpdate(
+        { _id: args.id },
+        updateProjectInfo,
+        {
+          new: true,
+        }
+      );
+    },
+    deleteProject: async (parent, args) => {
+      return await Project.findByIdAndDelete(args.id);
     },
   },
 };

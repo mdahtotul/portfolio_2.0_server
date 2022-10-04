@@ -28,6 +28,15 @@ app.get("/", (req, res) => {
     .json({ message: `Portfolio_2.0_server is running on ${port} 😍` });
 });
 
+const today = new Date();
+const time =
+  today.getHours() +
+  " hr " +
+  today.getMinutes() +
+  " min " +
+  today.getSeconds() +
+  " sec";
+
 app.listen(port, () => {
-  console.log("Server is running on port 🚀", port);
+  console.log("Server is running on port 🚀", port, time.bgMagenta.bold);
 });
