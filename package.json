@@ -15,7 +15,7 @@
     "MongoDB",
     "Mongoose"
   ],
-  "author": "MD. ARIFUL HASAN",
+  "author": "MD.ARIFUL HASAN",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^3.10.2",
