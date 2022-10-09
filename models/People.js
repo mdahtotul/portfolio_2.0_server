@@ -1,5 +1,6 @@
 // external imports
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema, model } = mongoose;
 
 // schema
 const peopleSchema = Schema(
@@ -13,6 +14,7 @@ const peopleSchema = Schema(
       type: String,
       required: true,
       trim: true,
+      lowercase: true,
     },
     password: {
       type: String,
@@ -26,11 +28,17 @@ const peopleSchema = Schema(
     },
     role: {
       type: String,
-      enum: ["ADMIN", "USER", "EDITOR", "MODERATOR"],
+      enum: ["Admin", "User", "Editor", "Moderator"],
     },
     cloudinary_id: {
       type: String,
     },
+    projects: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Project",
+      },
+    ],
   },
   {
     timestamps: true,
