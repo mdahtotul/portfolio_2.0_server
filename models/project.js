@@ -8,14 +8,26 @@ const projectSchema = new Schema(
       required: true,
       trim: true,
     },
-    categories: [
+    categoriesId: [
       {
-        type: String,
+        type: mongoose.Types.ObjectId,
         required: true,
       },
     ],
+    rank: {
+      type: Number,
+      required: true,
+    },
+    ratings: {
+      type: Number,
+    },
     des: [String],
-    tags: [String],
+    tagsId: [
+      {
+        type: mongoose.Types.ObjectId,
+        required: true,
+      },
+    ],
     status: {
       type: String,
       enum: ["Not_Started", "In_Progress", "Completed"],

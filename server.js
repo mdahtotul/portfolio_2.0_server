@@ -1,12 +1,12 @@
 // external imports
-const express = require("express");
-require("dotenv").config();
-const cors = require("cors");
-const colors = require("colors");
-const { ApolloServer } = require("apollo-server");
-const connectDB = require("./config/mongodb");
-const { typeDefs } = require("./schema/type-defs");
-const { resolvers } = require("./schema/resolvers");
+const express = require('express');
+require('dotenv').config();
+const cors = require('cors');
+const colors = require('colors');
+const { ApolloServer } = require('apollo-server');
+const connectDB = require('./config/mongodb');
+const { typeDefs } = require('./schema/type-defs');
+const { resolvers } = require('./schema/resolvers');
 
 // init app
 const app = express();
@@ -22,7 +22,7 @@ graphQLServer.listen().then(({ url }) => {
   console.log(`GraphQL endpoint is running at ${url}`.bgGreen.bold);
 });
 
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
   res
     .status(200)
     .json({ message: `Portfolio_2.0_server is running on ${port} 😍` });
@@ -31,12 +31,12 @@ app.get("/", (req, res) => {
 const today = new Date();
 const time =
   today.getHours() +
-  " hr " +
+  ':' +
   today.getMinutes() +
-  " min " +
+  ':' +
   today.getSeconds() +
-  " sec";
+  'sec';
 
 app.listen(port, () => {
-  console.log("Server is running on port 🚀", port, time.bgMagenta.bold);
+  console.log(time.red.bold, 'Server is running on port 🚀', port);
 });
