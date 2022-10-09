@@ -206,6 +206,24 @@ const resolvers = {
       );
 
       // NOTE: update category projectsId to get updateProject data
+      if (updateProject?.categoriesId?.length > 0) {
+        updateProject.categoriesId.forEach(async (category_id) => {
+          await Category.updateOne(
+            { _id: category_id },
+            { $addToSet: { projectsId: updateProject._id } }
+          );
+        });
+      }
+
+      // NOTE: update tag projectsId to get updateProject data
+      if (updateProject?.tagsId?.length > 0) {
+        updateProject.tagsId.forEach(async (tag_id) => {
+          await Tag.updateOne(
+            { _id: tag_id },
+            { $addToSet: { projectsId: updateProject._id } }
+          );
+        });
+      }
 
       return updateProject;
     },
