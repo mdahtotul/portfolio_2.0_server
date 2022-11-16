@@ -1,4 +1,4 @@
-const { gql } = require("apollo-server");
+const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Category {
@@ -28,6 +28,7 @@ const typeDefs = gql`
   type Project {
     id: ID!
     name: String!
+    slug: String!
     categoriesId: [ID!]!
     categories: [Category]
     des: [String]
@@ -66,6 +67,7 @@ const typeDefs = gql`
     # NOTE: project query done
     listProjects: [Project!]
     getProject(id: ID!): Project
+    getProjectBySlug(slug: String!): Project
     # NOTE: category query done
     listCategories: [Category!]
     getCategory(id: ID!): Category
@@ -104,8 +106,9 @@ const typeDefs = gql`
 
   input CreateProjectInput {
     name: String!
+    slug: String!
     categoriesId: [ID!]!
-    des: [String!]
+    des: String
     tagsId: [ID!]
     rank: Float!
     ratings: Float
@@ -120,8 +123,9 @@ const typeDefs = gql`
 
   input UpdateProjectInput {
     name: String
+    slug: String
     categoriesId: [ID!]
-    des: [String!]
+    des: String
     tagsId: [ID!]
     rank: Float
     ratings: Float
