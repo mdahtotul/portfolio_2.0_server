@@ -4,9 +4,9 @@ require('dotenv').config();
 const cors = require('cors');
 const colors = require('colors');
 const { ApolloServer } = require('apollo-server');
-const connectDB = require('./config/mongodb');
 const { typeDefs } = require('./schema/type-defs');
 const { resolvers } = require('./schema/resolvers');
+const connectMongooseDB = require('./config/mongooseDB');
 
 // init app
 const app = express();
@@ -14,11 +14,19 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 
 // database connection
-connectDB();
+connectMongooseDB();
 
-const graphQLServer = new ApolloServer({ typeDefs, resolvers });
+const graphQLServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  // csrfPrevention: true,
+  cache: 'bounded',
+  // cors: {
+  //   origin: ['http://localhost:3000'],
+  // },
+});
 
-graphQLServer.listen().then(({ url }) => {
+graphQLServer.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
   console.log(`GraphQL endpoint is running at ${url}`.bgGreen.bold);
 });
 

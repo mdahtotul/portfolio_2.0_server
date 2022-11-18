@@ -30,17 +30,21 @@ Optional Changes: (provide file path)
 # 💹 4. Tested both develop and production build ?\*
 
 - [ ] YES
-<!-- - [ ] NO -->
+- [ ] NO
 
 ---
 
 # 🧪 5. Done any extra testing ?\*
 
-Describe if you do any additional tests.
+- [ ] YES
+- [ ] NO
 
 ---
 
 # 📦 6. Added any new package?\*
+
+- [ ] YES
+- [ ] NO
 
 | Package Name | Package Version | Why?  |
 | :----------: | :-------------: | :---: |
@@ -48,15 +52,10 @@ Describe if you do any additional tests.
 
 ---
 
-# 🚩 7. Design
+# 🗺️ 8. Added any Environment variables
 
-| Given UI Design SS | Your Coded UI SS |
-| :----------------: | :--------------: |
-|       Header       |      Title       |
-
----
-
-# 🗺️ 8. Required Environment variables
+- [ ] YES
+- [ ] NO
 
 | Environment variables Key | Default value |  Why?   |
 | :-----------------------: | :-----------: | :-----: |
@@ -65,6 +64,9 @@ Describe if you do any additional tests.
 ---
 
 # 🆕 9. Other info (If needed)
+
+- [ ] YES
+- [ ] NO
 
 ---
 

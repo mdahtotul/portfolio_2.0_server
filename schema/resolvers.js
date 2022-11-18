@@ -7,7 +7,9 @@ const resolvers = {
   Query: {
     // NOTE: categories query resolvers done
     listCategories: async () => {
-      return await Category.find({});
+      const categories = await Category.find({});
+      console.log(categories);
+      return categories;
     },
     getCategory: async (parent, args) => {
       return await Category.findById(args.id);
@@ -32,6 +34,9 @@ const resolvers = {
     },
     getProject: async (parent, args) => {
       return await Project.findById(args.id);
+    },
+    getProjectBySlug: async (parent, args) => {
+      return await Project.find({ slug: args.slug });
     },
   },
 
@@ -143,8 +148,9 @@ const resolvers = {
     createProject: async (parent, args) => {
       const newProject = new Project({
         name: args.input.name,
+        slug: args.input.slug,
         categoriesId: args.input.categoriesId,
-        des: args.input.des || null,
+        des: args.input.des || '',
         tagsId: args.input.tagsId || null,
         status: args.input.status,
         rank: args.input.rank,
@@ -184,6 +190,7 @@ const resolvers = {
       const updateProjectInfo = new Project({
         _id: args.id,
         name: args.input.name,
+        slug: args.input.slug,
         categoriesId: args.input.categoriesId,
         des: args.input.des,
         tagsId: args.input.tagsId,

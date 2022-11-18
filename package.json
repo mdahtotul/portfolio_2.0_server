@@ -13,9 +13,10 @@
     "Node",
     "Express",
     "MongoDB",
-    "Mongoose"
+    "Mongoose",
+    "Apollo Server"
   ],
-  "author": "MD. ARIFUL HASAN",
+  "author": "MD.ARIFUL HASAN",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^3.10.2",
@@ -27,6 +28,7 @@
     "express": "^4.18.1",
     "express-graphql": "^0.12.0",
     "graphql": "^16.6.0",
+    "mongodb": "^4.11.0",
     "mongoose": "^6.6.3"
   },
   "devDependencies": {

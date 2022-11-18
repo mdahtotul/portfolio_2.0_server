@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Andromeda Italic Bordered",
+  "workbench.colorTheme": "Andromeda Colorizer",
   // config related to code formatting
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
