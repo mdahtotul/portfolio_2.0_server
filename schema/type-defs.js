@@ -107,7 +107,7 @@ const typeDefs = gql`
   input CreateProjectInput {
     name: String!
     slug: String!
-    categoriesId: [ID!]!
+    categoriesId: [ID!]
     des: String
     tagsId: [ID!]
     rank: Float!

@@ -16,12 +16,10 @@ const projectSchema = new Schema(
     categoriesId: [
       {
         type: mongoose.Types.ObjectId,
-        required: true,
       },
     ],
     rank: {
       type: Number,
-      required: true,
     },
     ratings: {
       type: Number,
@@ -32,7 +30,6 @@ const projectSchema = new Schema(
     tagsId: [
       {
         type: mongoose.Types.ObjectId,
-        required: true,
       },
     ],
     status: {
