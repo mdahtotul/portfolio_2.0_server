@@ -1,25 +1,65 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
-const ProjectSchema = new Schema(
+const projectSchema = new Schema(
   {
     name: {
       type: String,
+      required: true,
+      trim: true,
     },
-    description: {
+    slug: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    categoriesId: [
+      {
+        type: mongoose.Types.ObjectId,
+      },
+    ],
+    rank: {
+      type: Number,
+    },
+    ratings: {
+      type: Number,
+    },
+    des: {
       type: String,
     },
+    tagsId: [
+      {
+        type: mongoose.Types.ObjectId,
+      },
+    ],
     status: {
       type: String,
-      enum: ["Not Started", "In Progress", "Completed"],
+      enum: ['Not_Started', 'In_Progress', 'Completed'],
+      default: 'Not_Started',
     },
     clientId: {
-      type: Schema.Types.ObjectId,
-      ref: "Client",
+      type: mongoose.Types.ObjectId,
+      ref: 'People',
     },
+    live_site: {
+      type: String,
+    },
+    client_repo: {
+      type: String,
+    },
+    server_repo: {
+      type: String,
+    },
+    thumb_img: {
+      type: String,
+    },
+    sub_img: [String],
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = model("Project", ProjectSchema);
+const Project = model('Project', projectSchema);
+
+module.exports = Project;
