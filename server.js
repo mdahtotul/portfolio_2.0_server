@@ -26,7 +26,7 @@ const graphQLServer = new ApolloServer({
   // },
 });
 
-graphQLServer.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
+graphQLServer.listen().then(({ url }) => {
   console.log(`GraphQL endpoint is running at ${url}`.bgGreen.bold);
 });
 
