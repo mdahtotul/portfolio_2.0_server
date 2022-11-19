@@ -27,14 +27,14 @@ const graphQLServer = new ApolloServer({
 });
 
 graphQLServer.listen().then(({ url }) => {
-  console.log(`GraphQL endpoint is running at ${url}`.bgGreen.bold);
+  console.log(`GraphQL development endpoint is running at ${url}`.bgGreen.bold);
 });
 
-app.get('/', (req, res) => {
-  res
-    .status(200)
-    .json({ message: `Portfolio_2.0_server is running on ${port} 😍` });
-});
+// app.get('/', (req, res) => {
+//   res
+//     .status(200)
+//     .json({ message: `Portfolio_2.0_server is running on ${port} 😍` });
+// });
 
 const today = new Date();
 const time =
@@ -46,5 +46,9 @@ const time =
   'sec';
 
 app.listen(port, () => {
-  console.log(time.red.bold, 'Server is running on port 🚀', port);
+  console.log(
+    time.red.bold,
+    ` ${process.env.NODE_ENV} server is running on port 🚀`,
+    port
+  );
 });
